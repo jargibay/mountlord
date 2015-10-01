@@ -1,0 +1,262 @@
+#!/bin/bash
+#Written by John Siciliano
+#~II~=I=:::,,,,::,:,,,:,:++??+?I77+II+I?I7IIII?I=:,:,:::,,:::,::::::::::~~~~=~:~~
+#=7I777?:::,,,,::,:,,,:,,+??II+?+I+I?+++?II?III?+=:::::::,::::::::::::~:~~~~~~:~~
+#7I?7777:::,,,,::,:,,,:,:+I??+===+~===~~++?????++?++=::,:::::::::::~::~:~~:~~~:~~
+#77I7777~::,,,,::,:,,,:~??+?+~~~+~~~=~~::~==+=~==++++?=~:::~::::::~~:~~:~~:~~~~~~
+#77III77~::,:,,::,,,,,+I=+==~:~::~::::,:::~~~~:~==~===+?~::~:::::::~:~::~~~~:~=+=
+#I777777~::,:,,::,,,,~I?=~~::,:::~:,,,:,,:::::::::~===++I?~=~::::::~~~::~~~~~:~~:
+#I777777~::,:,,::,,,,I??~:::,:,:::::,,::,,:::,::::~~~===+I?~::::::::~~::~~:~~::::
+#I777777=::,:,,::,,~I??=~:,:::,,:::~,,,,:,,,,,:::::,:~=~=II+::::::~~~:::~:~::~:~~
+#?777777?~:,:,,::,~77?=::::,::::,~:::,,,,:::,:::::::,:::~+?~~:::::::~:::~~::::::~
+#I777777?~:,:,,:::~7I=:::~~::::~::::~~::,:::,::::::::::::~+::::::::~~:~:~~~~::::~
+#?777777?::,,,,:::I7I~:~::,:::::,::::::::,:::~::~:::::::::+~::::::~~~:~~~~~~::::~
+#=77777II~::,,,::~?I?~,,::~~:::::::,:,::,,::,::::~::::::::~=:~:::~~~::~~~~~~:~~~~
+#=777777I=:,,,,:::=+=,:::::,,,,::,.,:::,,.,,,,,,.,,,:::~::=+:::::~~~~:~::~~~~~~~~
+#?777777II::,,,::=I==::::,,,,,,,,,,,,:,,,,,,.,,,,,,:,,:~~:==~::::~~~~~=~~~~~~~~~~
+#7777777I7~:,:,:~?I=~~~:,,,,:,:::::~,,,::..,,:,~:,:,:,,,:~==~::::~~~~~~~~~~~~~~~~
+#777777777::,:,=77?=~::::,:::~:~~:::::,:,::~~:~~::,,::,~~~=?I=:~::~~~~~~~~~~~~~~~
+#I77I77I++::,~I77I?~::::,,,:.,,,,,,,,,,,...,,,::::~,::~:~==II=~~~~~~~~=~~~~~~~~~~
+#I77?=77=I~:,~7I+=~::,,..,,::::::~~~~=~=+?==~==+~:,,..,,~:~=?I=~~~~~~==~~~=~~~~~~
+#77I?+?=:?=:,=??~::,,:,.:,,,==,..=.I::~,~~7I?,~++?++..:,,::~=?+~~~~~~~~~~~=~~~~~~
+#::+?=?III???II=~::,,,,,:.,,,~~:,,+=+~~+~::=~~~=?+=:~~.,::~:~+?+++++++==~~=~~~~~~
+#+II??????????+:::::,,..,.,,.~~~~~=:~====:~??+?~~~===,,,,,,:~=++++++++++++++++=~~
+#????????????I::::,,,.,.~:,,=====~:~::~~:~::=I:=~,,:,.,,,:~::~=+?++++++++++++==~~
+#??+??+????+I+::::,,,.,.~=====+?=,:===+===~,:~:~~:,+:,.,,,::::~++???++++?+++++===
+#++====+==++I~::,,,,.,,,:~=~~=+::=+7II?I???+=:~::=+=:,,,,,,::~~~+???IIIIII?++==~:
+#===~~==~==I+~::,:,..,,::~=~~::~=I7I?????I?II+==+++=:,,,,,:::~:~=??7777777I++=~~:
+#~~~~~~:~~++~::::,,..,,:~~~=~=~=7I7IIIIIIII777++++=~:,,,,,,:::~:~++777777I?++=~~=
+#:::::::::+:~:,:,,...,,::~~====I77?I77777IIIII7++=~~:::,.,,,:::~==+?I777I?+++=~:~
+#,,:,,,,:,+::,:,,...,,,::~~:~==7I?I??+====+?+?77+~~~::,,.,,,,::~~~+++?+??+++=~:,,
+#,,,,,,,,~~::,,,,,...,,:::~~~=+7?+::.,:::,.~~II77+~=~~::,,,,,:,::~===+======~~:::
+#,,,,.,,,~~~:::,,...,::,::~:~=II?I:,..:,:...:?II7?~~=:=:,,,,,,:::~~===~~~===~~,::
+#,.......+~~:::,,.:,,::::::~~=I???~,,:,,,:,:=+??II?++~~::,,,,,:::~~~=~~~~~~~~::,:
+#~~++???++:::::,,,,:~~::::,:~=??+=~:,,,.,,::~=+?++??~::::~:,,::::~~~~:::::::::,~~
+#~==++??+=::::,,,,,+I::::::::~+?==~:,,,::,::~+++++?~~=~:::,,,,::~~:~=::::::::,,,:
+#====++??~:,:,,,,,~~,:::::,,::=++=~,,,::::,:==+++~~~::~::~:,:,:::~~~,,,,,,::,,,,,
+#=====+++=::::::??77?=~~:::~~~=++=~::~~~~~~====:,~+~~:::~=I?7?~~=,,,,,,,,,,,,,,:,
+#=====+=+=:~:~I77777~:::~~~~~~~===~=~======~:~~~,:~+~~~~=?7777777,,,,,,,,,,,,,,,,
+#========+,,,777777?+=~~~~~~~~~~~~~::::~~=~=+=+=~:~=+==+=+I77 7 77I,,,,.,,,,,,,,,
+#======+=~,,,777777?+=~~~~~~~~::~::~::~::~=~=+===~:++++?,,,=7777777=,,,,:,,,,,,,,
+#========~,,= 7777I+=~.,,:~~~~:~~~:~:~:~~~=:~~===~:~~==?..,,=777777I~+?+++==~:,:~
+#~==~====777777I?I?++:.,.,:=~:~~:~~~~~~:,~:=~~+~~~~:~:::+..=?=I7+,,=++??I?+==::~=
+#~~~~~===777777????+=...,.:~=,::~,~~~~:~~~~+~===~==:::::::~::~.,::,:++?II?+=~:~==
+#~~~~~~~777777???I++,.,,.,.=~:::,:,~~:=~=~~~+~===~==:,:::,:,:,:,~:,,++?7I?+=~::~=
+#~~~~~=777777I?I??=.,,.....:~:~::::~~:~====~~===~==~~=~,,,::::,,=:::,+?I?+=~:==~~
+#~~~~~~777777??++,..,,......~~~~~~::~~~+=+=~~+=====~~=+?,~:::::,:::::=???+=~~=+~~
+#:~~~~~:,,,.,.......,,......,~:~~::,:~~==++~=====~~~~=++,~::::::,,::,:+???~:~=++=
+#:::::~:,:,,,,......,........:~~~~::,~====+====~=~~~~=+=,~~:::::,,,,,,,=?=:~~=+?+
+#:::::~,,:,.,.,....,,........,~~:~~~~::====+=====~~====~,:~~~:::,,,.....=:,~=~+I?
+#::::::.,:=~,.,....,,.........:~:=~~::,=======~==~=++=~:,:~:~::::,....,~~,~~===+?
+#::::::,,,~:,,,,...,,,........:~:~=~~~~:=~==++~====+=~:,.,::~::::,.:,,~.~.~~~===+
+#,::,,:,,.,,,.,,..,,,,........,~~:~=~~~~:=========+~~:,.,,,:~~~::,,..,,,,:~====++
+#,,,,,,,,..,,,.,..,,,,......,,.~::~=~~~~=~=========:::,.,,,:::~~:,,....~,::~=====
+#+=:.,,.,...,,,,,,,::,......,,,,::~~~~~======~===~:~::,.,,,:::::,,,....~=,~~~====
+#====~,....,.,,.,:,::,,,,,,,,,,,:~:~~~=~===~~=~==~~~:,,.,,,,,:,:~,:.,,,,=~~~~~===
+#=====,..,,,,,,,,,,~=~,:,,,,,,,,:~~~+~~====~~~:~==~::,,..,,,,,,,,~....,,==,~~~~==
+#For use with Mac OS X Mountain Lion or newer. 
+#
+#Uses DSCL for NFS mounts, minimizes failure and errors from using standard mount
+#
+
+mountremote=$1
+mountlabel=$2
+networkoutput=`echo $mountremote | egrep -o '^[^:]+'`
+
+function usage {
+me=`echo $0 | awk -F '/' '{print $NF}'`
+echo -e "Usage: $me [options] <networkaddress:source> <label>\n\t$me nfs.domain.local:/nfs/data mount1 \t - Mounts NFS share \n \t $me auto - \t Auto mounts everything from settings\n\t$me write - \t Writes current mounts to optional config file\n \t$me rebuild Creates proper mount settings for current mounted NFS shares\n \t$me unmount <label/all> - \t Unmounts label or all mounts \n \t $me config - \t Creates environment based on optional config file \n \t " 
+
+}
+if [[ $(uname) != "Darwin" ]]; then
+	echo "This is for Mac OS only"
+	exit		
+fi
+
+if [ "$1" == "auto" ]; then
+	dscl . -list /Mounts | sed "1 d" |
+	while IFS= read -r line
+	do
+		networkoutput=""
+		networkoutput=`echo $line | egrep -o '^[^:]+'`
+		indexloopnumber=0
+		while [[ `ping -c1 $networkoutput | sed -n 2p | awk '{print $1}'` != "64" ]]; do
+        		echo "No ICMP response from host"
+        		indexloopnumber=$[$indexloopnumber+1]
+       			 sleep 2.5s
+        		if [[ `ping -c1 $networkoutput | sed -n 2p | awk '{print $1}'` == "64" ]]; then
+               			 break;
+			fi
+			if [[ $indexloopnumber == 4 ]]; then
+                		break;
+       			 fi
+		done
+	done
+
+	dscl . -readall /Mounts | grep -i VFSLinkDir: | 
+	while IFS= read -r line
+     	do
+      		mountname=`echo $line | awk -F"VFSLinkDir: " '/VFSLinkDir: / {print $2}'`
+		mountname2=`echo $line | awk -F"VFSLinkDir: " '/VFSLinkDir: / {print $2}' | sed -e 's/Volumes/Mounts/g'`
+		if [[ ! -d $mountname ]]; then
+			echo Making directory $mountname
+			mkdir -p $mountname
+		fi
+		if [[ ! -d $mountname2 ]]; then
+			echo Making $mountname2
+			mkdir -p $mountname2
+		fi
+		mount -a
+		sleep 1
+		mount -a
+     	done
+	exit
+fi
+
+if [[ "$1" == "config" ]]; then
+	overwritestatus=`cat /etc/mountlord | sed -e '/^#.*$/d'| grep "OverwriteAll" | awk -F'=' '{print $2}'`
+	if [[ "$overwritestatus" == "1" ]]; then
+		dscl . -delete /Mounts
+	fi
+        cat /etc/mountlord | sed -e '/^#.*$/d'| grep "mount=" | awk -F'=' '{print $2}' |  
+	while IFS= read -r line
+        do
+                origin=`echo $line | awk '{print $1}'`
+                label=`echo $line | awk '{print $2}'`
+		$0 $origin $label
+        done 
+		$0 auto
+        exit
+
+fi
+
+if [[ "$1" == "write" ]]; then
+	if [[ -f /etc/mountlord ]]; then
+		echo "Backing up old configuration file to /etc/.mountlord.bak"
+		mv /etc/mountlord /etc/.mountlord.bak
+	fi
+	touch /etc/mountlord
+	echo "#Generated by mountlord write" > /etc/mountlord
+	echo "OverwriteAll=1" >> /etc/mountlord
+	dscl . -list /Mounts | 
+	while IFS= read -r line
+	do
+		nfslabel=`dscl . -readall /Mounts | grep $line -A 2 | sed 's/--//g' | sed 2d  | sed -e 's/^RecordType:.*//g' | sed '/^$/d' | grep -i VFSLinkDir: | awk -F':' '{print $2}' | awk -F '/' '{print $NF}'`
+		echo "mount=$line $nfslabel" >> /etc/mountlord 
+	done
+	exit
+fi
+
+if [[ "$1" == "unmount" ]]; then
+	if [[ -z $2 ]]; then
+		echo "Usage: $0 unmount label" 
+		echo "$0 unmount all will unmount everything"
+		exit
+	fi
+	if [[ $2 == "all" ]]; then
+		df -h | grep :/ | awk '{print $NF}' |
+		while IFS= read -r line
+		do
+			diskutil unmount force $line
+			diskutil unmount force $line
+			diskutil unmount force $line
+		done
+		dscl . -delete /Mounts
+		exit
+	fi
+
+	sourcelabel=`dscl . -list /Mounts | awk -F':' '{print $2}' | awk -F'/' '{print $NF}' | grep -i $2`
+	destinationlabel=`dscl . -readall /Mounts | grep VFSLinkDir: | awk -F':' '{print $2}' | awk -F'/' '{print $NF}' | grep -i $2`
+	alienmount=`mount -t nfs | grep :/ | grep /Volumes/$2`
+	if [[ "$destinationlabel" == "" ]]; then
+		echo "Please use the mount label when unmounting. The following mounts are available to unmount:"
+		dscl . -readall /Mounts | grep VFSLinkDir: | awk -F':' '{print $2}' | awk -F'/' '{print $NF}'
+		echo "You can also use the all directive to unmount all mounts"
+			if [[ "$alienmount" != "" ]]; then
+				echo "Alien mount found. Unmounting"
+				diskutil unmount force /Volumes/$2
+				diskutil unmount force /Volumes/$2
+				diskutil unmount force /Volumes/$2
+			fi
+		exit
+	elif [[ "$destinationlabel" == "$2" ]]; then
+		#Escaped double backslashes suck                                                             look at this monstrosity
+	thisisntmyfinalformyet=`df -ha | grep :/ | grep -i "/Volumes/$destinationlabel" | awk '{print $1}' | sed -e s,'/','\\\\\\\/',g`
+		dscl . -delete /Mounts/$thisisntmyfinalformyet
+		umount /Volumes/$destinationlabel
+		failorsuccess=`df -ha | grep -i :/ | grep -i /Volumes/$destinationalabel`
+		if [[ "$failorsuccess" == "" ]]; then
+			echo $destinationlabel has been unmounted
+		elif [[ "$failorsuccess" != "" ]]; then
+			echo "Could not unmount from system."
+		fi
+	fi
+	
+	exit
+fi
+
+if [[ "$1" == "rebuild" ]]; then
+	df -ha | grep :/ | 
+	while IFS= read -r line
+	do
+		mountpoint=$(echo $line | awk '{print $1}')
+		label=$(echo $line | awk '{print $NF}' | awk -F'/' '{print $NF}')
+		$0 $mountpoint $label
+	done
+	exit
+fi
+	
+if [ -z "$1" ]; then
+	usage
+	exit;
+fi
+
+if [ "$1" == "help" ] || [ "$1" == "--help"  ] ; then
+	usage 
+	exit
+fi
+
+if [[ `ping -c1 $networkoutput | sed -n 2p | awk '{print $1}'` != "64" ]]; then
+	echo "Network mount unreachable" 
+	exit
+fi
+
+if [ ! -d /Mounts/$mountlabel ]; then
+	mkdir -p /Mounts/$mountlabel
+	mkdir -p /Volumes/$mountlabel
+fi
+
+if [[ `sudo dscl . -readall /Mounts | grep -i $mountremote` != "" ]]; then
+	echo "Seems to already exist."
+	if [[ `df -ha | grep -i $mountremote` == "" ]]; then
+		echo "Not mounted. Mounting..."
+		mkdir -p /Mounts/$mountlabel
+		mkdir -p /Volumes/$mountlabel
+		mount -a
+		sleep 1
+		mount -a
+		exit
+	else
+		echo "Already mounted. Exiting"
+		exit;
+	fi
+		
+fi
+
+
+	
+if [[ "$mountremote" =~ : ]]; then
+
+	sudo dscl . -create /Mounts/$mountlabel
+	sudo dscl . -create /Mounts/$mountlabel VFSLinkDir /Volumes/$mountlabel
+	sudo dscl . -create /Mounts/$mountlabel VFSOpts resvport locallocks tcp intr rdirplus
+	sudo dscl . -create /Mounts/$mountlabel VFSType nfs
+	sudo dscl . -create /Mounts/$mountlabel RecordName $mountremote
+	sudo dscl . -list /Mounts
+	sudo dscl . -read /Mounts/$mountremote
+	mount -a
+else
+	echo "Malformed remote location path"
+	echo "Please use address:path "
+	exit
+fi 
