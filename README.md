@@ -9,3 +9,6 @@ This was written for a specific case and does not necessarily work in all config
 Licensed under LGPL.
 
 Written in BASH
+
+
+Having this auto mount once configuration is set, you can create a plist file to run mountlord auto to ensure the network mount is reachable and the mountpoints exist, if not to create them
