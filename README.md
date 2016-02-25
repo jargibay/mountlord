@@ -12,3 +12,7 @@ Written in BASH
 
 
 Having this auto mount once configuration is set, you can create a plist file to run mountlord auto to ensure the network mount is reachable and the mountpoints exist, if not to create them
+
+Has the ability to use an option configuration file, that it can generate from DSCL settings, or set DSCL to use them.
+
+This is written extremely linearly and doesn't use functions. Why? Because it was written originally as a wrapper that Puppet could use to (in a certain use case) to manage NFS mounts in Yosemite using DSCL. I expanded it, because I then realized it didn't allow troubleshooting or modification of any kind. Turned it into a makeshift command line utility.
